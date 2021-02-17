@@ -1,0 +1,36 @@
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.container-form {
+  display: flex;
+  justify-content: space-between;
+}
+.single-input {
+  margin: 10px 20px;
+}
+.btn-container {
+  display: flex;
+  margin-top: 10px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.search {
+  height: 50px;
+  justify-content: center;
+}
+
+.warning {
+  color: #f44336;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media (min-width: 320px) and (orientation: portrait) {
+  .container-form {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

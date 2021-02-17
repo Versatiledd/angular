@@ -1,0 +1,304 @@
+<app-test-single-record
+  (addRecord)="onAddRecord($event)"
+></app-test-single-record>
+<form [formGroup]="globalData" (ngSubmit)="onSubmit()">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    [ngClass]="{ hideTable: dataSource.length === 0 }"
+  >
+    <ng-container matColumnDef="data" style="min-width: 100px">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <p class="data-title">{{ element.record.shopDate.infoWorker.date }}</p>
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Sklep</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        style="min-width: 100px"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <p class="sklep-title">{{ element.record.shopDate.infoWorker.shop }}</p>
+        <p class="sklep-title">
+          Pracownik: {{ element.record.shopDate.infoWorker.worker }}
+        </p>
+      </td>
+    </ng-container>
+    <!-- Dane Column -->
+    <ng-container matColumnDef="dane">
+      <th mat-header-cell *matHeaderCellDef>Dane</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="dane"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <p class="dane-title">Faktury</p>
+        <p class="dane-title">Paragony</p>
+        <p class="dane-title">Zwroty</p>
+        <p class="dane-title">Zlecenia transportu</p>
+        <p class="dane-title">Zlecenia telefoniczne</p>
+        <p class="dane-title">Zapytania od klienta</p>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action" style="max-width: 70px">
+      <th mat-header-cell *matHeaderCellDef>Akcje</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        style="max-width: 50px"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <div class="actions">
+          <button
+            mat-raised-button
+            color="warn"
+            class="btn-action"
+            (click)="editItem(element)"
+            [disabled]="element.record.edit"
+          >
+            Edytuj
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-action"
+            (click)="deleteItem(element)"
+          >
+            Usuń
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-action"
+            *ngIf="element.record.edit"
+            (click)="saveData(element)"
+          >
+            Zapisz
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hour1">
+      <th mat-header-cell *matHeaderCellDef>18:00-19:00</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="hour"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <div formGroupName="faktury">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.faktury.morning }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="paragony">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.paragony.morning }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zwroty">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.zwroty.morning }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTransportu">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTransportu.morning
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTelefoniczne">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTelefoniczne.morning
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zapytaniaKlienta">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zapytaniaKlienta.morning
+              }}"
+            />
+          </mat-form-field>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="hour2">
+      <th mat-header-cell *matHeaderCellDef>19:00-20:00</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="hour"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <div formGroupName="faktury">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.faktury.afternoon }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="paragony">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.paragony.afternoon }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zwroty">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.zwroty.afternoon }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTransportu">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTransportu.afternoon
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTelefoniczne">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTelefoniczne.afternoon
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zapytaniaKlienta">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zapytaniaKlienta.afternoon
+              }}"
+            />
+          </mat-form-field>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="hour3">
+      <th mat-header-cell *matHeaderCellDef>20:00-21:00</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="hour"
+        [ngClass]="{ 'set-color': element.record.edit }"
+      >
+        <div formGroupName="faktury">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.faktury.night }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="paragony">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.paragony.night }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zwroty">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.zwroty.night }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTransportu">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTransportu.night
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zlecenieTelefoniczne">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{
+                element.record.shopDate.dane.zlecenieTelefoniczne.night
+              }}"
+            />
+          </mat-form-field>
+        </div>
+        <div formGroupName="zapytaniaKlienta">
+          <mat-form-field class="hour">
+            <input
+              matInput
+              [disabled]="element.record.edit ? false : true"
+              value="{{ element.record.shopDate.dane.zapytaniaKlienta.night }}"
+            />
+          </mat-form-field>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</form>

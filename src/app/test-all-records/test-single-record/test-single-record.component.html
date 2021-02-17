@@ -1,0 +1,228 @@
+<app-test-form
+  (sendValuesFromInputs)="takeValues($event)"
+  (sendShowComponentFlag)="takeFlagComponent($event)"
+></app-test-form>
+<div *ngIf="showComponent">
+  <form [formGroup]="globalData" (ngSubmit)="onSubmit()">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Data Column -->
+      <ng-container matColumnDef="data" style="min-width: 100px">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let element">
+          <p class="data-title">{{ information.date }}</p>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Sklep</th>
+        <td mat-cell *matCellDef="let element" style="min-width: 100px">
+          <p class="sklep-title">{{ information.shop }}</p>
+          <p class="sklep-title">Pracownik: {{ information.worker }}</p>
+        </td>
+      </ng-container>
+
+      <!-- Dane Column -->
+      <ng-container matColumnDef="dane">
+        <th mat-header-cell *matHeaderCellDef>Dane</th>
+        <td mat-cell *matCellDef="let element" class="dane">
+          <p class="dane-title">Faktury</p>
+          <p class="dane-title">Paragony</p>
+          <p class="dane-title">Zwroty</p>
+          <p class="dane-title">Zlecenia transportu</p>
+          <p class="dane-title">Zlecenia telefoniczne</p>
+          <p class="dane-title">Zapytania od klienta</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hour1">
+        <th mat-header-cell *matHeaderCellDef>18:00-19:00</th>
+        <td mat-cell *matCellDef="let element" class="hour">
+          <div formGroupName="faktury">
+            <mat-form-field class="hour">
+              <mat-label
+                *ngIf="
+                  !globalData.get('faktury.morning').valid &&
+                  globalData.get('faktury.morning').touched
+                "
+                >Wpisz liczbe</mat-label
+              >
+              <input
+                matInput
+                value="{{ element.hour1 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="paragony">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour1 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zwroty">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour1 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTransportu">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour1 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTelefoniczne">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zapytaniaKlienta">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="morning"
+              />
+            </mat-form-field>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="hour2">
+        <th mat-header-cell *matHeaderCellDef>19:00-20:00</th>
+        <td mat-cell *matCellDef="let element" class="hour">
+          <div formGroupName="faktury">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="paragony">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zwroty">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTransportu">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTelefoniczne">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zapytaniaKlienta">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour2 }}"
+                formControlName="afternoon"
+              />
+            </mat-form-field>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="hour3">
+        <th mat-header-cell *matHeaderCellDef>20:00-21:00</th>
+        <td mat-cell *matCellDef="let element" class="hour">
+          <div formGroupName="faktury">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="paragony">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zwroty">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTransportu">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zlecenieTelefoniczne">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+          <div formGroupName="zapytaniaKlienta">
+            <mat-form-field class="hour">
+              <input
+                matInput
+                value="{{ element.hour3 }}"
+                formControlName="night"
+              />
+            </mat-form-field>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <button mat-raised-button color="warn" style="margin: 10px 0">Dodaj</button>
+  </form>
+</div>

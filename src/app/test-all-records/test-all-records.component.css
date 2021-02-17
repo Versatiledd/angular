@@ -1,0 +1,61 @@
+table {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+.hour {
+  max-width: 90px;
+  text-align: center;
+}
+.dane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 340px;
+}
+p {
+  margin: 0;
+}
+
+.sklep-title {
+  margin: 30px 0;
+}
+
+.dane-title,
+.sklep-title,
+.data-title {
+  font-weight: 500;
+}
+
+.data-title {
+  color: #18712f;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.btn-action {
+  width: 80px;
+  margin: 5px;
+  padding: 0;
+}
+
+.set-color {
+  border-bottom: 2px solid rgb(207, 60, 50);
+  border-top: 2px solid rgb(207, 60, 50);
+}
+
+.hideTable {
+  display: none;
+}
